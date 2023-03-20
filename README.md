@@ -20,7 +20,7 @@ The second concept is to create a random distribution of points 𝑿𝒍𝒐𝒄
 the search into two parts; One part of the population to explore outside the local search area. The other
 is assigned to focus on searching around the center of the search area. The size of the exploration
 population changes iteratively in this manner:
-𝑖𝑓 𝑟𝑎𝑛𝑑 < 1 − 𝐾 / 𝐾𝑚𝑎𝑥 (4)
+𝑖𝑓 𝑟𝑎𝑛𝑑 < 0.5
 Eq. 4 condition compares the randomly generated value, between 0 and 1, to the output of the Eq. 4
 expression, which is also between 0 and 1. 𝑲 is the current iteration and 𝑲𝒎𝒂𝒙 Represent the value of
 maximum iteration set initially as a stopping criterion. At early iterations, the output corresponds to a
@@ -28,16 +28,16 @@ high possibility for the “if statement” to be True, and at late iterations, 
 This way, we assign most of the population toward exploring initially, then slowly shift toward
 exploitation.
 Exploration population look in the direction away from the MeanBest expressed as follows:
-𝐸 = 𝑋𝑙𝑜𝑐 − 𝑟𝑎𝑛𝑑𝑖(10) × 𝑋𝑀𝑒𝑎𝑛𝐵𝑒𝑠𝑡 (5)
+𝐸 = 𝑋𝑙𝑜𝑐 −  × 𝑋𝐵𝑒𝑠𝑡 (5)
 Where 𝒓𝒂𝒏𝒅𝒊(𝟏𝟎) is a random integer between 1 and 10, the following equation calculates the new
 solutions:
-𝑋𝑛𝑒𝑤 = 𝑋𝑙𝑜𝑐 + 𝑟𝑎𝑛𝑑 × 𝐸 (6)
+𝑋𝑛𝑒𝑤 = 𝑋𝑙𝑜𝑐 +  𝐸 (6)
 “rand” here stands for a random value between 0 and 1. Note here that we use the same random value
 for all design variables.
 The rest of the population, not assigned to exploration, is pushed to search around the local area
 center. The following equation governs this process:
 𝑭 = 𝑋𝑙𝑜𝑐 − 𝑋𝑏𝑒𝑠𝑡 (7)
-𝑋𝑛𝑒𝑤 = 𝑋𝑙𝑜𝑐 − 𝑟𝑎𝑛𝑑 × 𝑭 (8)
+𝑋𝑛𝑒𝑤 = 𝑋𝑙𝑜𝑐 + 𝑟𝑎𝑛𝑑 × 𝑭 (8)
 Where 𝑭 is the distance between the selected local point to the absolute best solution, similarly, rand
 here is the random value between 0 and 1. Note also here that we use the same random value for all
 design variables.
