@@ -44,12 +44,12 @@ PosLoc = Rand_mat.*(Local_bnd(:,2) - Local_bnd(:,1)) + Local_bnd(:,1);
 %%% while slowly focusing on the center of the search area
 
 for i=1:Pop
-      if  rand<1-It/Max_Its
-          Explore=PosLoc(:,i)-randi(10).*Best_Poses(:,i);
-          Pos(:,i)=PosLoc(:,i)+rand*Explore;
+      if  rand<0.5
+          Explore=PosLoc(:,i)-Best_Poses(:,i);
+          Pos(:,i)=PosLoc(:,i)+Explore;
       else
           Dist_Center=PosLoc(:,i)-Center;
-          Pos(:,i)=PosLoc(:,i)-rand*Dist_Center;   
+          Pos(:,i)=PosLoc(:,i)+rand*Dist_Center;   
       end
 end 
 
